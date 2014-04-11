@@ -19,25 +19,29 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "precise64"
+  config.vm.box = "debian-7.4.0-amd64_virtualbox"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = "https://vagrantcloud.com/ffuenf/debian-7.4.0-amd64/version/5/provider/virtualbox.box"
 
   config.vm.define "zk1" do |zk1|
     zk1.vm.network :private_network, ip: "192.168.86.5"
+    zk1.vm.hostname = "zk1"
     zk1.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "512"]
     end
+    zk1.vm.provision "shell", path: "vagrant/java7.sh"
     zk1.vm.provision "shell", path: "vagrant/zk.sh"
   end
 
   config.vm.define "k1" do |k1|
     k1.vm.network :private_network, ip: "192.168.86.10"
+    k1.vm.hostname = "k1"
     k1.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "1024"]
     end
+    k1.vm.provision "shell", path: "vagrant/java7.sh"
     k1.vm.provision "shell", path: "vagrant/broker.sh", :args => "1"
   end
 end
