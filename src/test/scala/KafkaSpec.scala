@@ -38,10 +38,10 @@ class KafkaSpec extends Specification with Logging {
       var testStatus = false
 
       info("starting sample broker testing")
-      val producer = new KafkaProducer(testTopic,"192.168.86.10:9092")
+      val producer = new KafkaProducer(testTopic,"192.168.10.21:9092")
       producer.send(testMessage)
 
-      val consumer = new KafkaConsumer(testTopic,groupId_1,"192.168.86.5:2181")
+      val consumer = new KafkaConsumer(testTopic,groupId_1,"192.168.10.20:2181")
 
       def exec(binaryObject: Array[Byte]) = {
         val message = new String(binaryObject)
@@ -68,10 +68,10 @@ class KafkaSpec extends Specification with Logging {
       var testStatus2 = false
 
       info("starting sample broker testing")
-      val producer = new KafkaProducer(testTopic,"192.168.86.10:9092")
+      val producer = new KafkaProducer(testTopic,"192.168.10.21:9092")
       producer.send(testMessage)
 
-      val consumer1 = new KafkaConsumer(testTopic,groupId_1,"192.168.86.5:2181")
+      val consumer1 = new KafkaConsumer(testTopic,groupId_1,"192.168.10.20:2181")
 
       def exec1(binaryObject: Array[Byte]) = {
         val message1 = new String(binaryObject)
@@ -85,7 +85,7 @@ class KafkaSpec extends Specification with Logging {
       consumer1.read(exec1)
       info("KafkaSpec : consumer 1 - consumed")
 
-      val consumer2 = new KafkaConsumer(testTopic,groupId_2,"192.168.86.5:2181")
+      val consumer2 = new KafkaConsumer(testTopic,groupId_2,"192.168.10.20:2181")
 
       def exec2(binaryObject: Array[Byte]) = {
         val message2 = new String(binaryObject)
@@ -121,12 +121,12 @@ class KafkaSpec extends Specification with Logging {
       val producer = system.actorOf(Props[KafkaAkkaProducer].withRouter(RoundRobinRouter(actorCount)), "router")
 
       1 to actorCount foreach { i =>(
-        producer ! (testTopic,"192.168.86.10:9092"))
+        producer ! (testTopic,"192.168.10.21:9092"))
       }
 
       producer ! testMessage
 
-      val consumer1 = new KafkaConsumer(testTopic,groupId_1,"192.168.86.5:2181")
+      val consumer1 = new KafkaConsumer(testTopic,groupId_1,"192.168.10.20:2181")
 
       def exec1(binaryObject: Array[Byte]) = {
         val message1 = new String(binaryObject)
@@ -140,7 +140,7 @@ class KafkaSpec extends Specification with Logging {
       consumer1.read(exec1)
       info("KafkaSpec : consumer 1 - consumed")
 
-      val consumer2 = new KafkaConsumer(testTopic,groupId_2,"192.168.86.5:2181")
+      val consumer2 = new KafkaConsumer(testTopic,groupId_2,"192.168.10.20:2181")
 
       def exec2(binaryObject: Array[Byte]) = {
         val message2 = new String(binaryObject)
