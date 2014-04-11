@@ -4,7 +4,7 @@ Description
 Quick up and running using Scala for Apache Kafka.
 
 Software versions used in the boxes :
-* Type: Virtual Box (from [https://vagrantcloud.com/ffuenf/debian-7.4.0-amd64](vagrantcloud))
+* Type: Virtual Box (from [vagrantcloud.com/ffuenf](https://vagrantcloud.com/ffuenf/debian-7.4.0-amd64))
 * OS: Debian 7.4 x64 
 * kafka 0.8.1
 * Scala 2.10
