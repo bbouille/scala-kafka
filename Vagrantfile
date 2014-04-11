@@ -33,11 +33,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     zk1.vm.provision "shell", path: "vagrant/zk.sh"
   end
 
-  config.vm.define "brokerOne" do |brokerOne|
-    brokerOne.vm.network :private_network, ip: "192.168.86.10"
-    brokerOne.vm.provider :virtualbox do |vb|
+  config.vm.define "k1" do |k1|
+    k1.vm.network :private_network, ip: "192.168.86.10"
+    k1.vm.provider :virtualbox do |vb|
       vb.customize ["modifyvm", :id, "--memory", "512"]
     end
-    brokerOne.vm.provision "shell", path: "vagrant/broker.sh", :args => "1"
+    k1.vm.provision "shell", path: "vagrant/broker.sh", :args => "1"
   end
 end
