@@ -36,7 +36,7 @@ Fire up
 
 Go to to scala-kafka foler and start the VMs : 
 
-	cd scala-kafka
+  cd scala-kafka
 	vagrant up
 
 Once this is done :
@@ -44,8 +44,10 @@ Once this is done :
 * One broker 'k1' is running on 192.168.10.21 (listening on port 9092)
 
 You can see VM status with :
-	vagrant status
-	Current machine states:
+	
+  vagrant status
+
+Current machine states:
 
 	zk1                       running (virtualbox)
 	k1                        running (virtualbox)
@@ -54,11 +56,11 @@ If you want you can login to the machines using 'vagrant ssh <machineName>' (zk1
 
 Run the tests
 ===========
-All the tests in src/test/scala/* should pass :
+All the tests in src/test/scala/* can be run with :
 
 	./sbt test 
 
-	[...]
+and should hopefully pass :
 
 	[info] Total for specification KafkaSpec
 	[info] Finished in 33 ms
