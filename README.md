@@ -39,7 +39,7 @@ Go to to scala-kafka foler and start the VMs :
 	cd scala-kafka
 	vagrant up
 
-once this is done 
+Once this is done :
 * One zookeeper node 'zk1' is running on 192.168.10.20 (listening on port 2181)
 * One broker 'k1' is running on 192.168.10.21 (listening on port 9092)
 
@@ -54,8 +54,7 @@ If you want you can login to the machines using 'vagrant ssh <machineName>' (zk1
 
 Run the tests
 ===========
-
-* All the tests in src/test/scala/* should pass :
+All the tests in src/test/scala/* should pass :
 
 	./sbt test 
 
@@ -75,6 +74,6 @@ You can access the brokers and zookeeper by their IP from your local network wit
 
 Shuting down
 ===========
-* Shutdown all the VM from the scala-kafka folder :
+Shutdown all the VM from the scala-kafka folder :
 
 	vagrant destroy
