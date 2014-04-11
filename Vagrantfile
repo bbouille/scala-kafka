@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "k1" do |k1|
     k1.vm.network :private_network, ip: "192.168.86.10"
     k1.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "512"]
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
     end
     k1.vm.provision "shell", path: "vagrant/broker.sh", :args => "1"
   end
