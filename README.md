@@ -1,30 +1,80 @@
-scala-kafka
+Description
 ===========
 
-Quick up and running using Scala for Apache Kafka
+Quick up and running using Scala for Apache Kafka.
+
+Software versions used in the boxes :
+* Type: Virtual Box (from [https://vagrantcloud.com/ffuenf/debian-7.4.0-amd64](vagrantcloud))
+* OS: Debian 7.4 x64 
+* kafka 0.8.1
+* Scala 2.10
+* Java 1.7
+
+Box number : 2
+* 1 for the broker (1cpu / 1024mo / 10Go)
+* 1 for the zookeeper (1cpu / 512mo / 10Go)
+
+Requirements
+===========
 
 Use Vagrant to get up and running.
 
-1) Install Vagrant [http://www.vagrantup.com/](http://www.vagrantup.com/)  
-2) Install Virtual Box [https://www.virtualbox.org/](https://www.virtualbox.org/)  
+1. Install Vagrant [http://www.vagrantup.com/](http://www.vagrantup.com/)  
+2. Install Virtual Box [https://www.virtualbox.org/](https://www.virtualbox.org/)  
 
-In the main kafka folder  
+Installation 
+===========
 
-1) vagrant up  
-2) ./sbt test  
+Clone this repository in your home folder for example :
+
+	cd ~
+	git clone https://github.com/isnoopy/scala-kafka.git
+
+
+Fire up 
+===========
+
+Go to to scala-kafka foler and start the VMs : 
+
+	cd scala-kafka
+	vagrant up
 
 once this is done 
-* Zookeeper will be running 192.168.86.5
-* Broker 1 on 192.168.86.10
-* All the tests in src/test/scala/* should pass  
+* One zookeeper node 'zk1' is running on 192.168.10.20 (listening on port 2181)
+* One broker 'k1' is running on 192.168.10.21 (listening on port 9092)
 
-If you want you can login to the machines using vagrant ssh <machineName> but you don't need to.
+You can see VM status with :
+	vagrant status
+	Current machine states:
 
-You can access the brokers and zookeeper by their IP from your local without having to go into vm.
+	zk1                       running (virtualbox)
+	k1                        running (virtualbox)
 
-e.g.
+If you want you can login to the machines using 'vagrant ssh <machineName>' (zk1 or k1) but you don't need to.
 
-bin/kafka-console-producer.sh --broker-list 192.168.86.10:9092 --topic <get his from the random topic created in test>
+Run the tests
+===========
 
-bin/kafka-console-consumer.sh --zookeeper 192.168.86.5:2181 --topic <get his from the random topic created in test> --from-beginning
+* All the tests in src/test/scala/* should pass :
 
+	./sbt test 
+
+	[...]
+
+	[info] Total for specification KafkaSpec
+	[info] Finished in 33 ms
+	[info] 3 examples, 0 failure, 0 error
+	[info] Passed: Total 3, Failed 0, Errors 0, Passed 3
+	[success] Total time: 5 s, completed 11 avr. 2014 16:50:36
+
+You can access the brokers and zookeeper by their IP from your local network without having to go into vm.
+
+	bin/kafka-console-producer.sh --broker-list 192.168.10.20:9092 --topic <get his from the random topic created in test>
+
+	bin/kafka-console-consumer.sh --zookeeper 192.168.10.21:2181 --topic <get his from the random topic created in test> --from-beginning
+
+Shuting down
+===========
+* Shutdown all the VM from the scala-kafka folder :
+
+	vagrant destroy
