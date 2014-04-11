@@ -34,9 +34,9 @@ Clone this repository in your home folder for example :
 Fire up 
 ===========
 
-Go to to scala-kafka foler and start the VMs : 
+Go to to scala-kafka foler and start the VMs :
 
-  cd scala-kafka
+	cd scala-kafka
 	vagrant up
 
 Once this is done :
@@ -44,8 +44,8 @@ Once this is done :
 * One broker 'k1' is running on 192.168.10.21 (listening on port 9092)
 
 You can see VM status with :
-	
-  vagrant status
+
+	vagrant status
 
 Current machine states:
 
