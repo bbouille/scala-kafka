@@ -33,6 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     zk1.vm.provision "shell", path: "vagrant/java7.sh"
     zk1.vm.provision "shell", path: "vagrant/zk.sh"
+    zk1.vm.provision "shell", path: "vagrant/vim.sh"
   end
 
   config.vm.define "k1" do |k1|
@@ -43,5 +44,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     k1.vm.provision "shell", path: "vagrant/java7.sh"
     k1.vm.provision "shell", path: "vagrant/broker.sh", :args => "1"
+    k1.vm.provision "shell", path: "vagrant/vim.sh"
   end
 end
