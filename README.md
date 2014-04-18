@@ -1,99 +1,118 @@
-Description
-===========
+# Description
 
 Quick up and running using Scala for Apache Kafka.
 
-Software versions used in the boxes :
-* Type: Virtual Box (from [vagrantcloud.com/ffuenf](https://vagrantcloud.com/ffuenf/debian-7.4.0-amd64))
-* OS: Debian 7.4 x64 
-* kafka 0.8.1
-* Scala 2.10
-* Java 1.7
+Software versions used in each box (virtual machine running locally) :
 
-Box number : 2
-* 1 for the broker (1cpu / 1024mo / 10Go)
-* 1 for the zookeeper (1cpu / 512mo / 10Go)
+-   Type: Virtual Box (from [ffuenf][])
 
-Requirements
-===========
+-   OS: Debian 7.4 x64
 
-Use Vagrant to get up and running.
+-   kafka 0.8.1
 
-1. Install Vagrant [http://www.vagrantup.com/](http://www.vagrantup.com/)  
-2. Install Virtual Box [https://www.virtualbox.org/](https://www.virtualbox.org/)  
+-   Scala 2.10
 
-Installation 
-===========
+-   Java 1.7
+
+Box details :
+
+-   1 box for the broker (1cpu / 1024mo / 10Go)
+
+-   1 box for the zookeeper (1cpu / 512mo / 10Go)
+
+# Requirements
+
+Use Vagrant to get up and running :
+
+1.  Install Vagrant <http://www.vagrantup.com/>
+
+2.  Install Virtual Box <https://www.virtualbox.org/>
+
+# Installation
 
 Clone this repository in your home folder for example :
 
-	cd ~
-	git clone https://github.com/isnoopy/scala-kafka.git
+    cd ~
+    git clone https://github.com/isnoopy/scala-kafka.git
 
-
-Fire up 
-===========
+# Fire up
 
 Go to to scala-kafka foler and start the VMs :
 
-	cd scala-kafka
-	vagrant up
+    cd scala-kafka
+    vagrant up
 
 Once this is done :
-* One zookeeper node 'zk1' is running on 192.168.10.20 (listening on port 2181)
-* One broker 'k1' is running on 192.168.10.21 (listening on port 9092)
+
+-   One zookeeper node 'zk1' is running on 192.168.10.20 (listening on
+    port 2181)
+
+-   One broker 'k1' is running on 192.168.10.21 (listening on port 9092)
 
 You can see VM status with :
 
-	vagrant status
+    vagrant status
 
 Current machine states:
 
-	zk1                       running (virtualbox)
-	k1                        running (virtualbox)
+    zk1                       running (virtualbox)
+    k1                        running (virtualbox)
 
-If you want you can login to the machines using 'vagrant ssh <machineName>' (zk1 or k1) but you don't need to.
+If you want you can login to the machines using 'vagrant ssh ' (zk1 or
+k1) but you don't need to.
 
-Run the tests
-===========
-All the tests in src/test/scala/* can be run with :
+# Run the tests
 
-	./sbt test 
+All the tests in src/test/scala/\* can be run with :
 
-and should hopefully pass :
+    ./sbt test 
 
-	[info] Total for specification KafkaSpec
-	[info] Finished in 33 ms
-	[info] 3 examples, 0 failure, 0 error
-	[info] Passed: Total 3, Failed 0, Errors 0, Passed 3
-	[success] Total time: 5 s, completed 11 avr. 2014 16:50:36
+and should pass :
 
-You can access the brokers and zookeeper by their IP from your local network without having to go into vm.
+    [info] Total for specification KafkaSpec
+    [info] Finished in 33 ms
+    [info] 3 examples, 0 failure, 0 error
+    [info] Passed: Total 3, Failed 0, Errors 0, Passed 3
+    [success] Total time: 5 s, completed 11 avr. 2014 16:50:36
 
-	bin/kafka-console-producer.sh --broker-list 192.168.10.20:9092 --topic <get his from the random topic created in test>
+You can access the brokers and zookeeper by their IP from your local
+network without having to go into vm.
 
-	bin/kafka-console-consumer.sh --zookeeper 192.168.10.21:2181 --topic <get his from the random topic created in test> --from-beginning
+    bin/kafka-console-producer.sh --broker-list 192.168.10.20:9092 --topic <get his from the random topic created in test>
 
-Shuting down
-===========
-Shutdown all the VM from the scala-kafka folder :
+    bin/kafka-console-consumer.sh --zookeeper 192.168.10.21:2181 --topic <get his from the random topic created in test> --from-beginning
 
-	vagrant halt
+# Shuting down (suspend)
 
-	==> zk1: Attempting graceful shutdown of VM...
-	==> k1: Attempting graceful shutdown of VM...
+Shutdown all (suspend execution) the VM from the scala-kafka folder :
 
-Clean up
-===========
+    vagrant halt
+
+    ==> zk1: Attempting graceful shutdown of VM...
+    ==> k1: Attempting graceful shutdown of VM...
+
+# Resume (restart)
+
+Resume (recover execution) the VM from the scala-kafka folder :
+
+    vagrant up
+
+# Clean up
+
 To completly stop and remove all the VM files :
 
-	vagrant destroy                                                                             
+    vagrant destroy                                                                             
 
-		k1: Are you sure you want to destroy the 'k1' VM? [y/N] y
-	==> k1: Destroying VM and associated drives...
-	==> k1: Running cleanup tasks for 'shell' provisioner...
-	==> k1: Running cleanup tasks for 'shell' provisioner...
-    	zk1: Are you sure you want to destroy the 'zk1' VM? [y/N] y
-	==> zk1: Destroying VM and associated drives...
-	==> zk1: Running cleanup tasks for 'shell' provisioner...
-	==> zk1: Running cleanup tasks for 'shell' provisioner...
+        k1: Are you sure you want to destroy the 'k1' VM? [y/N] y
+    ==> k1: Destroying VM and associated drives...
+    ==> k1: Running cleanup tasks for 'shell' provisioner...
+    ==> k1: Running cleanup tasks for 'shell' provisioner...
+        zk1: Are you sure you want to destroy the 'zk1' VM? [y/N] y
+    ==> zk1: Destroying VM and associated drives...
+    ==> zk1: Running cleanup tasks for 'shell' provisioner...
+    ==> zk1: Running cleanup tasks for 'shell' provisioner...
+
+More on vagrant tools :
+[http://docs.vagrantup.com/v2/getting-started/teardown.html][ffuenf]
+
+  [ffuenf]: #
