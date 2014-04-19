@@ -14,6 +14,8 @@ Software versions used in each box (virtual machine running locally) :
 
 -   Java 1.7
 
+-   Ganglia 3.5.8 / Ganglia-web 3.5.12
+
 Box details :
 
 -   1 box for the broker (1cpu / 1024mo / 10Go)
@@ -82,6 +84,12 @@ network without having to go into vm.
 
     bin/kafka-console-consumer.sh --zookeeper 192.168.10.21:2181 --topic <get his from the random topic created in test> --from-beginning
 
+# Check box load and health
+
+Using Ganglia for monitoring ([more details][]), you can check each VM
+ressource consumption (CPU, RAM, HD) at <http://192.168.10.21/ganglia>
+in your favorite browser.
+
 # Shuting down (suspend)
 
 Shutdown all (suspend execution) the VM from the scala-kafka folder :
@@ -116,3 +124,4 @@ More on vagrant tools :
 [http://docs.vagrantup.com/v2/getting-started/teardown.html][ffuenf]
 
   [ffuenf]: #
+  [more details]: http://ganglia.sourceforge.net/
