@@ -44,6 +44,7 @@ apt-get -y update
 
 chmod a+rw /opt
 cd /opt
+rm -rf kafka
 ln -s /vagrant kafka
 cd kafka
 IP=$(ifconfig  | grep 'inet addr:'| grep 168 | grep 192|cut -d: -f2 | awk '{ print $1}')
