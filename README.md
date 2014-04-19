@@ -86,9 +86,11 @@ network without having to go into vm.
 
 # Check box load and health
 
-Using Ganglia for monitoring ([more details][]), you can check each VM
-ressource consumption (CPU, RAM, HD) at <http://192.168.10.21/ganglia>
-in your favorite browser.
+Using Ganglia for monitoring ([more details][ffuenf]), you can check
+each VM ressource consumption (CPU, RAM, HD) at
+<http://192.168.10.21/ganglia> in your favorite browser.
+
+![alt tag](docs/img/ganglia.png)
 
 # Shuting down (suspend)
 
@@ -109,7 +111,7 @@ Resume (recover execution) the VM from the scala-kafka folder :
 
 To completly stop and remove all the VM files :
 
-    vagrant destroy                                                                             
+    vagrant destroy
 
         k1: Are you sure you want to destroy the 'k1' VM? [y/N] y
     ==> k1: Destroying VM and associated drives...
@@ -124,4 +126,4 @@ More on vagrant tools :
 [http://docs.vagrantup.com/v2/getting-started/teardown.html][ffuenf]
 
   [ffuenf]: #
-  [more details]: http://ganglia.sourceforge.net/
+  []: docs/img/ganglia.png
