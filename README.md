@@ -92,24 +92,33 @@ each VM ressource consumption (CPU, RAM, HD) at
 
 ![alt tag](docs/img/ganglia.png)
 
-# Shuting down (suspend)
+# Suspend box execution (recommanded to stop the boxes)
 
-Shutdown all (suspend execution) the VM from the scala-kafka folder :
+To stop all the VM, the quicker way is to suspend them with : 
+
+    vagrant suspend
+
+    ==> zk1: Saving VM state and suspending execution...
+    ==> k1: Saving VM state and suspending execution...
+
+# Shuting down 
+
+To shutdown all the VM:
 
     vagrant halt
 
     ==> zk1: Attempting graceful shutdown of VM...
     ==> k1: Attempting graceful shutdown of VM...
 
-# Resume (restart)
+# Resume (start again after 'suspend' or 'halt')
 
-Resume (recover execution) the VM from the scala-kafka folder :
+To start again the boxes, simply run :
 
     vagrant up
 
 # Clean up
 
-To completly stop and remove all the VM files :
+To completely stop and remove all the boxes files :
 
     vagrant destroy
 
