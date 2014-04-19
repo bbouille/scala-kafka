@@ -42,7 +42,7 @@ Go to to scala-kafka foler and start the VMs :
     cd scala-kafka
     vagrant up
 
-Once this is done :
+Once this is done (\~10min) :
 
 -   One zookeeper node 'zk1' is running on 192.168.10.20 (listening on
     port 2181)
