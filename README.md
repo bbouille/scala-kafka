@@ -90,11 +90,11 @@ Using Ganglia for monitoring ([more details][]), you can check each VM
 ressource consumption (CPU, RAM, HD etc.) at
 <http://192.168.10.21/ganglia> :
 
-![][]
+![][1]
 
 And the kafka broker details on node 'k1':
 
-![][1]
+![][2]
 
 # Suspend box execution (recommanded to stop the boxes)
 
@@ -140,6 +140,6 @@ More on vagrant tools :
 
   [ffuenf]: https://vagrantcloud.com/ffuenf
   [more details]: http://ganglia.sourceforge.net/
-  []: docs/img/ganglia.png
-  [1]: docs/img/ganglia-kafka.png
+  [1]: docs/img/ganglia.png
+  [2]: docs/img/ganglia-kafka.png
   [http://docs.vagrantup.com/v2/getting-started/teardown.html]: #
