@@ -86,22 +86,26 @@ network without having to go into vm.
 
 # Check box load and health
 
-Using Ganglia for monitoring ([more details][ffuenf]), you can check
-each VM ressource consumption (CPU, RAM, HD) at
-<http://192.168.10.21/ganglia> in your favorite browser.
+Using Ganglia for monitoring ([more details][]), you can check each VM
+ressource consumption (CPU, RAM, HD etc.) at
+<http://192.168.10.21/ganglia> :
 
-![alt tag](docs/img/ganglia.png)
+![][]
+
+And the kafka broker details on node 'k1':
+
+![][1]
 
 # Suspend box execution (recommanded to stop the boxes)
 
-To stop all the VM, the quicker way is to suspend them with : 
+To stop all the VM, the quicker way is to suspend them with :
 
     vagrant suspend
 
     ==> zk1: Saving VM state and suspending execution...
     ==> k1: Saving VM state and suspending execution...
 
-# Shuting down 
+# Shuting down
 
 To shutdown all the VM:
 
@@ -132,7 +136,10 @@ To completely stop and remove all the boxes files :
     ==> zk1: Running cleanup tasks for 'shell' provisioner...
 
 More on vagrant tools :
-[http://docs.vagrantup.com/v2/getting-started/teardown.html][ffuenf]
+[http://docs.vagrantup.com/v2/getting-started/teardown.html][]
 
-  [ffuenf]: #
+  [ffuenf]: https://vagrantcloud.com/ffuenf
+  [more details]: http://ganglia.sourceforge.net/
   []: docs/img/ganglia.png
+  [1]: docs/img/ganglia-kafka.png
+  [http://docs.vagrantup.com/v2/getting-started/teardown.html]: #

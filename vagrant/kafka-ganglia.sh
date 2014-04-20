@@ -30,30 +30,14 @@ exitscript()
         exit 0
 }
 
-apt-get -y update
-sudo apt-get -y install ganglia-monitor
+release=$1
 
-## Set custom hostname and IP
-IP=$(ifconfig  | grep 'inet addr:'| grep 168 | grep 192|cut -d: -f2 | awk '{ print $1}')
-sed 's/globals {/globals { \n  override_hostname = '$(hostname)' \n  override_ip = '$IP'/' /etc/ganglia/gmond.conf > /tmp/gmond.conf.1
+## Copy external library
 
-## The current host belong to a cluster : set the name
-sed 's/name = "unspecified"/name = "kafka"/' /tmp/gmond.conf.1 > /tmp/gmond.conf.2
+# see kafka-ganglia.git
+cp /vagrant/lib/kafka-ganglia-1.0.0.jar /opt/apache/kafka/libs/.
 
-## Fix network configuration : main interface eth1 (static)
-sed 's/udp_send_channel {/udp_send_channel {\n   mcast_if = eth1/' /tmp/gmond.conf.2 > /tmp/gmond.conf.3
-sed 's/udp_recv_channel {/udp_recv_channel {\n   mcast_if = eth1/' /tmp/gmond.conf.3 > /tmp/gmond.conf.4
-sed 's/bind = 239.2.11.71//' /tmp/gmond.conf.4 > /tmp/gmond.conf
-
-
-mv /etc/ganglia/gmond.conf /etc/ganglia/gmond.conf-bck
-cp /tmp/gmond.conf /etc/ganglia/gmond.conf
-
-
-## Reload configuration
-/etc/init.d/ganglia-monitor restart
-
-## Start at boot up
-update-rc.d ganglia-monitor defaults
+# see http://metrics.codahale.com/manual/ganglia/
+cp /vagrant/lib/metrics-ganglia-2.2.0.jar /opt/apache/kafka/libs/.
 
 exitscript
