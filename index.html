@@ -62,7 +62,7 @@
 <p>Clone this repository in your home folder for example :</p>
 
 <pre><code>cd ~
-git clone https://github.com/isnoopy/scala-kafka.git
+git clone https://github.com/bbouille/scala-kafka.git
 </code></pre>
 
 <h1>
@@ -77,9 +77,9 @@ vagrant up
 <p>Once this is done (~10min) :</p>
 
 <ul>
-<li>  One zookeeper node 'zk1' is running on 192.168.10.20 (listening on
-port 2181)</li>
-<li>  One broker 'k1' is running on 192.168.10.21 (listening on port 9092)</li>
+<li><p>One zookeeper node 'zk1' is running on 192.168.10.20 (listening on
+port 2181)</p></li>
+<li><p>One broker 'k1' is running on 192.168.10.21 (listening on port 9092)</p></li>
 </ul><p>You can see VM status with :</p>
 
 <pre><code>vagrant status
@@ -126,11 +126,11 @@ bin/kafka-console-consumer.sh --zookeeper 192.168.10.21:2181 --topic &lt;get his
 ressource consumption (CPU, RAM, HD etc.) at
 <a href="http://192.168.10.21/ganglia">http://192.168.10.21/ganglia</a> :</p>
 
-<p><img src="docs/img/ganglia.png" alt="alt text"></p>
+<p><img src="https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia.png" alt="alt text"></p>
 
 <p>And the kafka broker details on node 'k1':</p>
 
-<p><img src="docs/img/ganglia-kafka.png" alt="alt text"></p>
+<p><img src="https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia-kafka.png" alt="alt text"></p>
 
 <h1>
 <a name="stop" class="anchor" href="#stop"><span class="octicon octicon-link"></span></a>Stop</h1>
