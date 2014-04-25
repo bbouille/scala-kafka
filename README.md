@@ -28,7 +28,7 @@ Use Vagrant to get up and running :
 Clone this repository in your home folder for example :
 
     cd ~
-    git clone https://github.com/isnoopy/scala-kafka.git
+    git clone https://github.com/bbouille/scala-kafka.git
 
 # Fire up
 
@@ -41,6 +41,7 @@ Once this is done (\~10min) :
 
 -   One zookeeper node 'zk1' is running on 192.168.10.20 (listening on
     port 2181)
+
 -   One broker 'k1' is running on 192.168.10.21 (listening on port 9092)
 
 You can see VM status with :
