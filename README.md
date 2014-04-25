@@ -83,11 +83,11 @@ Using Ganglia for monitoring ([more details][]), you can check each VM
 ressource consumption (CPU, RAM, HD etc.) at
 <http://192.168.10.21/ganglia> :
 
-![alt text](blob/master/docs/img/ganglia.png?raw=true)
+![alt text](https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia.png)
 
 And the kafka broker details on node 'k1':
 
-![alt text](blob/master/docs/img/ganglia-kafka.png?raw=true)
+![alt text](https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia-kafka.png)
 
 # Stop
 
