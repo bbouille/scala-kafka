@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Scala-kafka by bbouille</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Scala-kafka</h1>
+        <p>Quick up and running using Scala for Apache Kafka</p>
+        <p class="view"><a href="https://github.com/bbouille/scala-kafka">View the Project on GitHub <small>bbouille/scala-kafka</small></a></p>
+        <ul>
+          <li><a href="https://github.com/bbouille/scala-kafka/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bbouille/scala-kafka/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bbouille/scala-kafka">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h1>
+
+<p>Quick up and running using Scala for Apache Kafka.</p>
+
+<p>Software versions used in each box (virtual machine running locally) :</p>
+
+<ul>
+<li>  Type: Virtual Box (from <a href="https://vagrantcloud.com/ffuenf">ffuenf</a>)</li>
+<li>  OS: Debian 7.4 x64</li>
+<li>  kafka 0.8.1</li>
+<li>  Scala 2.10</li>
+<li>  Java 1.7</li>
+<li>  Ganglia 3.5.8 / Ganglia-web 3.5.12 (multicast mode)</li>
+</ul><p>Box details :</p>
+
+<ul>
+<li>  1 box for the broker (1cpu / 1024mo / 10Go)</li>
+<li>  1 box for the zookeeper (1cpu / 512mo / 10Go)</li>
+</ul><h1>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<p>Use Vagrant to get up and running :</p>
+
+<ol>
+<li> Install Vagrant <a href="http://www.vagrantup.com/">http://www.vagrantup.com/</a>
+</li>
+<li> Install Virtual Box <a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a>
+</li>
+</ol><h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>Clone this repository in your home folder for example :</p>
+
+<pre><code>cd ~
+git clone https://github.com/isnoopy/scala-kafka.git
+</code></pre>
+
+<h1>
+<a name="fire-up" class="anchor" href="#fire-up"><span class="octicon octicon-link"></span></a>Fire up</h1>
+
+<p>Go to to scala-kafka foler and start the VMs :</p>
+
+<pre><code>cd scala-kafka
+vagrant up
+</code></pre>
+
+<p>Once this is done (~10min) :</p>
+
+<ul>
+<li>  One zookeeper node 'zk1' is running on 192.168.10.20 (listening on
+port 2181)</li>
+<li>  One broker 'k1' is running on 192.168.10.21 (listening on port 9092)</li>
+</ul><p>You can see VM status with :</p>
+
+<pre><code>vagrant status
+</code></pre>
+
+<p>Current machine states:</p>
+
+<pre><code>zk1                       running (virtualbox)
+k1                        running (virtualbox)
+</code></pre>
+
+<p>If you want you can login to the machines using 'vagrant ssh ' (zk1 or
+k1) but you don't need to.</p>
+
+<h1>
+<a name="run-the-tests" class="anchor" href="#run-the-tests"><span class="octicon octicon-link"></span></a>Run the tests</h1>
+
+<p>All the tests in src/test/scala/* can be run with :</p>
+
+<pre><code>./sbt test 
+</code></pre>
+
+<p>and should pass :</p>
+
+<pre><code>[info] Total for specification KafkaSpec
+[info] Finished in 33 ms
+[info] 3 examples, 0 failure, 0 error
+[info] Passed: Total 3, Failed 0, Errors 0, Passed 3
+[success] Total time: 5 s, completed 11 avr. 2014 16:50:36
+</code></pre>
+
+<p>You can access the brokers and zookeeper by their IP from your local
+network without having to go into vm.</p>
+
+<pre><code>bin/kafka-console-producer.sh --broker-list 192.168.10.20:9092 --topic &lt;get his from the random topic created in test&gt;
+
+bin/kafka-console-consumer.sh --zookeeper 192.168.10.21:2181 --topic &lt;get his from the random topic created in test&gt; --from-beginning
+</code></pre>
+
+<h1>
+<a name="check-box-load-and-health" class="anchor" href="#check-box-load-and-health"><span class="octicon octicon-link"></span></a>Check box load and health</h1>
+
+<p>Using Ganglia for monitoring (<a href="http://ganglia.sourceforge.net/">more details</a>), you can check each VM
+ressource consumption (CPU, RAM, HD etc.) at
+<a href="http://192.168.10.21/ganglia">http://192.168.10.21/ganglia</a> :</p>
+
+<p><img src="docs/img/ganglia.png" alt="alt text"></p>
+
+<p>And the kafka broker details on node 'k1':</p>
+
+<p><img src="docs/img/ganglia-kafka.png" alt="alt text"></p>
+
+<h1>
+<a name="stop" class="anchor" href="#stop"><span class="octicon octicon-link"></span></a>Stop</h1>
+
+<p>To quickly stop all the VM :</p>
+
+<pre><code>vagrant suspend
+
+==&gt; zk1: Saving VM state and suspending execution...
+==&gt; k1: Saving VM state and suspending execution...
+</code></pre>
+
+<p>OR to completely shutdown all the VM :</p>
+
+<pre><code>vagrant halt
+
+==&gt; zk1: Attempting graceful shutdown of VM...
+==&gt; k1: Attempting graceful shutdown of VM...
+</code></pre>
+
+<h1>
+<a name="resume" class="anchor" href="#resume"><span class="octicon octicon-link"></span></a>Resume</h1>
+
+<p>To start again the boxes (after ’suspend’ or ‘halt’), simply run :</p>
+
+<pre><code>vagrant up
+</code></pre>
+
+<h1>
+<a name="clean-up" class="anchor" href="#clean-up"><span class="octicon octicon-link"></span></a>Clean up</h1>
+
+<p>To completely stop and remove all the boxes files :</p>
+
+<pre><code>vagrant destroy
+
+    k1: Are you sure you want to destroy the 'k1' VM? [y/N] y
+==&gt; k1: Destroying VM and associated drives...
+==&gt; k1: Running cleanup tasks for 'shell' provisioner...
+==&gt; k1: Running cleanup tasks for 'shell' provisioner...
+    zk1: Are you sure you want to destroy the 'zk1' VM? [y/N] y
+==&gt; zk1: Destroying VM and associated drives...
+==&gt; zk1: Running cleanup tasks for 'shell' provisioner...
+==&gt; zk1: Running cleanup tasks for 'shell' provisioner...
+</code></pre>
+
+<p>More on vagrant tools :
+<a href="#">http://docs.vagrantup.com/v2/getting-started/teardown.html</a></p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/bbouille">bbouille</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-39567970-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
