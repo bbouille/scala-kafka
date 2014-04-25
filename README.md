@@ -2,18 +2,26 @@
 
 Quick up and running using Scala for Apache Kafka.
 
+Based on original work of [stealthly][]
+
 Software versions used in each box (virtual machine running locally) :
 
 -   Type: Virtual Box (from [ffuenf][])
+
 -   OS: Debian 7.4 x64
+
 -   kafka 0.8.1
+
 -   Scala 2.10
+
 -   Java 1.7
+
 -   Ganglia 3.5.8 / Ganglia-web 3.5.12 (multicast mode)
 
 Box details :
 
 -   1 box for the broker (1cpu / 1024mo / 10Go)
+
 -   1 box for the zookeeper (1cpu / 512mo / 10Go)
 
 # Requirements
@@ -21,6 +29,7 @@ Box details :
 Use Vagrant to get up and running :
 
 1.  Install Vagrant <http://www.vagrantup.com/>
+
 2.  Install Virtual Box <https://www.virtualbox.org/>
 
 # Installation
@@ -83,11 +92,11 @@ Using Ganglia for monitoring ([more details][]), you can check each VM
 ressource consumption (CPU, RAM, HD etc.) at
 <http://192.168.10.21/ganglia> :
 
-![alt text](https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia.png)
+![][]
 
 And the kafka broker details on node 'k1':
 
-![alt text](https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia-kafka.png)
+![][1]
 
 # Stop
 
@@ -105,7 +114,7 @@ OR to completely shutdown all the VM :
     ==> zk1: Attempting graceful shutdown of VM...
     ==> k1: Attempting graceful shutdown of VM...
 
-# Resume 
+# Resume
 
 To start again the boxes (after ’suspend’ or ‘halt’), simply run :
 
@@ -129,8 +138,9 @@ To completely stop and remove all the boxes files :
 More on vagrant tools :
 [http://docs.vagrantup.com/v2/getting-started/teardown.html][]
 
+  [stealthly]: https://github.com/stealthly/scala-kafka
   [ffuenf]: https://vagrantcloud.com/ffuenf
   [more details]: http://ganglia.sourceforge.net/
-  []: docs/img/ganglia.png
-  [1]: docs/img/ganglia-kafka.png
+  []: https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia.png
+  [1]: https://raw.githubusercontent.com/bbouille/scala-kafka/master/docs/img/ganglia-kafka.png
   [http://docs.vagrantup.com/v2/getting-started/teardown.html]: #
